@@ -22,6 +22,11 @@
     
     <title>6-Week Spring Shred Challenge - The Strikers Lab | Sydney's Premier Combat Sports Gym</title>
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -29,6 +34,10 @@
             theme: {
                 extend: {
                     colors: {
+                        'bg': '#000000',
+                        'primary': '#dc2626',
+                        'accent': '#F97316',
+                        'card': '#171A1C',
                         'brand': {
                             50: '#fef2f2',
                             100: '#fee2e2',
@@ -43,6 +52,8 @@
                         }
                     },
                     fontFamily: {
+                        'heading': ['Manrope', 'sans-serif'],
+                        'body': ['Sora', 'sans-serif'],
                         'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
                     },
                     animation: {
@@ -125,16 +136,76 @@
             @apply p-6 pt-0;
         }
         
-        .accordion-item {
-            @apply border-b border-border;
+        /* Style Guide CSS Classes */
+        .btn-primary {
+            @apply bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg font-body hover:opacity-90 transition-opacity shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200;
         }
         
-        .accordion-trigger {
-            @apply flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180;
+        .btn-secondary {
+            @apply bg-transparent border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold text-lg font-body hover:bg-primary hover:text-white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
         }
         
+        .btn-ghost {
+            @apply bg-transparent text-white px-4 py-2 font-medium text-base font-body hover:text-accent underline hover:no-underline transition-all duration-200;
+        }
+        
+        .card {
+            @apply bg-card border border-gray-700 rounded-lg p-6;
+        }
+        
+        /* Enhanced Accordion Styles from Style Guide */
         .accordion-content {
-            @apply overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1.5rem;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        .accordion-content.open {
+            max-height: 1000px;
+            padding: 1rem 2rem 1.5rem 2rem;
+            opacity: 1;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease 0.1s;
+        }
+        
+        .accordion-arrow {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .accordion-arrow.rotated {
+            transform: rotate(180deg);
+        }
+        
+        /* Focus states for accessibility */
+        .accordion-trigger:focus {
+            outline: none;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 640px) {
+            .accordion-trigger {
+                padding: 1rem 1rem;
+                font-size: 1rem;
+            }
+            
+            .accordion-content {
+                padding: 0 1rem;
+            }
+            
+            .accordion-content.open {
+                padding: 0.75rem 1.5rem 1rem 1.5rem;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .accordion-trigger {
+                padding: 1.25rem 1.5rem;
+            }
         }
         
         /* Gradient text utility */
@@ -174,7 +245,7 @@
         }
         
         ::-webkit-scrollbar-track {
-            @apply bg-gray-800;
+            background-color: #000000;
         }
         
         ::-webkit-scrollbar-thumb {
@@ -186,75 +257,128 @@
             scroll-behavior: smooth;
         }
         
-        /* Skip link */
-        .skip-link {
-            @apply absolute -top-10 left-6 z-50 bg-brand-600 text-white px-4 py-2 rounded-md transition-all duration-300 focus:top-6;
+        /* Responsive navbar enhancements */
+        @media (max-width: 767px) {
+            .mobile-menu {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+            
+            .mobile-menu.open {
+                max-height: 500px;
+                transition: max-height 0.3s ease-in;
+            }
         }
+        
+        /* Tablet navigation optimization */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .tablet-nav {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+        }
+        
+        /* Desktop navigation optimization */
+        @media (min-width: 1024px) {
+            .desktop-nav a {
+                white-space: nowrap;
+            }
+        }
+        
+        /* Extra large screens */
+        @media (min-width: 1280px) {
+            .desktop-nav {
+                gap: 1.5rem;
+            }
+        }
+        
+        /* Two-row navbar styling */
+        .main-header {
+            min-height: auto;
+        }
+        
+        /* Logo row styling */
+        .logo-row {
+            border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+        }
+        
+        
     </style>
 </head>
 
-<body class="bg-black text-white font-sans antialiased">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+<body class="text-white font-sans antialiased" style="background-color: #000000;">
     
-    <!-- Google Rating Social Proof Bar -->
-    <div class="fixed top-0 left-0 right-0 z-60 bg-red-600 text-white py-2">
+    <!-- Urgency Banner -->
+    <a href="https://example.com/book-now" target="_blank" class="block w-full text-white py-2 sm:py-3 hover:opacity-90 transition-opacity duration-300" style="background-color: #671622;">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-center gap-4 text-sm">
-                <div class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                    </svg>
-                    <span class="font-semibold">4.9★ Google Rating</span>
+            <div class="flex items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-semibold">
+                <div class="flex items-center gap-1 sm:gap-2">
+                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full animate-pulse flex-shrink-0"></div>
+                    <span class="text-white font-bold">URGENT:</span>
                 </div>
-                <div class="hidden sm:block w-px h-4 bg-white/30"></div>
-                <span class="hidden sm:inline">200+ 5-Star Reviews</span>
-                <div class="hidden sm:block w-px h-4 bg-white/30"></div>
-                <span class="font-semibold">Sydney's #1 Combat Sports Gym</span>
+                <span class="text-white text-center">Only 11 spots remaining - Secure your transformation today!</span>
+                <svg class="w-3 h-3 sm:w-4 sm:h-4 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
             </div>
         </div>
-    </div>
+    </a>
 
     <!-- Header -->
-    <header class="fixed top-10 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-brand-600/20 transition-all duration-300" id="header">
+    <header class="main-header relative z-50 backdrop-blur-md border-b border-brand-600/20 transition-all duration-300" id="header" style="background-color: #000000;">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 lg:h-20">
-                <!-- Logo -->
-                <a href="#" class="text-xl lg:text-2xl font-bold text-white hover:text-brand-600 transition-colors duration-300">
-                    The Strikers<span class="text-brand-600">Lab</span>
+            <!-- Logo Row -->
+            <div class="logo-row flex justify-center py-3 sm:py-4">
+                <a href="#" class="text-xl sm:text-2xl lg:text-3xl font-bold text-white hover:text-accent transition-colors duration-300 font-heading">
+                    The Strikers<span class="text-accent">Lab</span>
                 </a>
-                
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#challenge" class="text-white hover:text-red-500 transition-colors duration-300 font-medium">The Challenge</a>
-                    <a href="#results" class="text-white hover:text-red-500 transition-colors duration-300 font-medium">Results</a>
-                    <a href="#coach" class="text-white hover:text-red-500 transition-colors duration-300 font-medium">Meet Franz</a>
-                    <a href="#faq" class="text-white hover:text-red-500 transition-colors duration-300 font-medium">FAQ</a>
+            </div>
+            
+            <!-- Navigation Row -->
+            <div class="flex justify-center items-center pt-2 sm:pt-3 pb-3 sm:pb-4">
+                <!-- Desktop Navigation (1024px+) -->
+                <nav class="desktop-nav hidden lg:flex items-center space-x-4 xl:space-x-6">
+                    <a href="#testimonials" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-sm xl:text-base">Testimonials</a>
+                    <a href="#transformations" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-sm xl:text-base">Transformations</a>
+                    <a href="#how-it-works" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-sm xl:text-base">How It Works</a>
+                    <a href="#what-you-get" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-sm xl:text-base">What You Get</a>
+                    <a href="#guarantee" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-sm xl:text-base">Our Guarantee</a>
+                    <a href="#about" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-sm xl:text-base">About Us</a>
+                    <a href="#faq" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-sm xl:text-base">FAQs</a>
                 </nav>
                 
-                <!-- CTA Button -->
-                <div class="flex items-center gap-4">
-                    <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-button" class="md:hidden text-white hover:text-red-500 transition-colors duration-300">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                    
-                    <button onclick="trackCTAClick('header')" class="btn btn-primary btn-xl">
-                        Apply Now
-                    </button>
-                </div>
+                <!-- Tablet Navigation (768px - 1023px) -->
+                <nav class="tablet-nav hidden md:flex lg:hidden items-center space-x-3">
+                    <a href="#testimonials" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-xs">Testimonials</a>
+                    <a href="#transformations" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-xs">Transformations</a>
+                    <a href="#how-it-works" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-xs">How It Works</a>
+                    <a href="#what-you-get" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-xs">What You Get</a>
+                    <a href="#guarantee" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-xs">Our Guarantee</a>
+                    <a href="#about" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-xs">About Us</a>
+                    <a href="#faq" class="text-white hover:text-accent transition-colors duration-300 font-medium font-body text-xs">FAQs</a>
+                </nav>
+                
+                <!-- Mobile Menu Button (0px - 767px) -->
+                <button id="mobile-menu-button" class="md:hidden text-white hover:text-accent transition-colors duration-300 p-2">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
         
         <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="md:hidden bg-black/95 backdrop-blur-md border-b border-brand-600/20 hidden">
-            <div class="container mx-auto px-4 py-4">
-                <nav class="flex flex-col space-y-4">
-                    <a href="#challenge" class="text-white hover:text-red-500 transition-colors duration-300 font-medium py-2">The Challenge</a>
-                    <a href="#results" class="text-white hover:text-red-500 transition-colors duration-300 font-medium py-2">Results</a>
-                    <a href="#coach" class="text-white hover:text-red-500 transition-colors duration-300 font-medium py-2">Meet Franz</a>
-                    <a href="#faq" class="text-white hover:text-red-500 transition-colors duration-300 font-medium py-2">FAQ</a>
+        <div id="mobile-menu" class="mobile-menu md:hidden backdrop-blur-md border-b border-brand-600/20 hidden" style="background-color: #000000;">
+            <div class="container mx-auto px-4 py-3 sm:py-4">
+                <nav class="flex flex-col space-y-2 sm:space-y-3">
+                    <a href="#testimonials" class="text-white hover:text-accent transition-colors duration-300 font-medium py-2 sm:py-3 font-body text-sm sm:text-base">Testimonials</a>
+                    <a href="#transformations" class="text-white hover:text-accent transition-colors duration-300 font-medium py-2 sm:py-3 font-body text-sm sm:text-base">Transformations</a>
+                    <a href="#how-it-works" class="text-white hover:text-accent transition-colors duration-300 font-medium py-2 sm:py-3 font-body text-sm sm:text-base">How It Works</a>
+                    <a href="#what-you-get" class="text-white hover:text-accent transition-colors duration-300 font-medium py-2 sm:py-3 font-body text-sm sm:text-base">What You Get</a>
+                    <a href="#guarantee" class="text-white hover:text-accent transition-colors duration-300 font-medium py-2 sm:py-3 font-body text-sm sm:text-base">Our Guarantee</a>
+                    <a href="#about" class="text-white hover:text-accent transition-colors duration-300 font-medium py-2 sm:py-3 font-body text-sm sm:text-base">About Us</a>
+                    <a href="#faq" class="text-white hover:text-accent transition-colors duration-300 font-medium py-2 sm:py-3 font-body text-sm sm:text-base">FAQs</a>
                 </nav>
             </div>
         </div>
@@ -262,102 +386,102 @@
     
     <!-- Hero Section -->
     <main id="main-content">
-        <section class="relative min-h-screen bg-gradient-to-br from-black via-gray-900 to-black hero-pattern pt-32 pb-20">
+        <section class="hero-section relative min-h-screen pt-20 pb-20" style="background-color: #000000;">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
                 <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
                     <!-- Left Content -->
                     <div class="animate-fade-in text-left">
                     
                         <!-- Subtitle -->
-                        <p class="text-lg sm:text-xl lg:text-2xl text-red-500 mb-6 font-semibold uppercase tracking-wide">
+                        <p class="text-lg sm:text-xl lg:text-2xl text-accent mb-6 font-semibold uppercase tracking-wide font-body">
                             For sydney-siders tired of boring gyms, failed diets, and quick fixes
                         </p>
                         
                         <!-- Main Headline -->
-                        <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 leading-tight text-white">
+                        <h1 class="font-black mb-8 leading-tight text-white font-heading" style="font-size: 2.986rem;">
                             Join The 6-Week Spring Shred Challenge
-                            <span class="text-red-500">That Gets You Fighting Fit — Guaranteed.</span>
+                            <span class="text-accent">That Gets You Fighting Fit — Guaranteed.</span>
                         </h1>
                         
                         <!-- Hero Subtitle -->
-                        <p class="text-lg sm:text-xl lg:text-2xl text-gray-300 mb-8 font-medium leading-relaxed">
+                        <p class="text-gray-300 mb-8 font-medium leading-relaxed font-body" style="font-size: 1.2rem;">
                             Shred fat, skyrocket your confidence, and learn real Muay Thai self-defense — all in just 6 weeks.
                         </p>
                     
                         <!-- Benefits List -->
                         <div class="space-y-4 mb-8">
                             <div class="flex items-start gap-3">
-                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-red-500 flex items-center justify-center mt-1">
+                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-primary flex items-center justify-center mt-1">
                                     <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-base sm:text-lg text-gray-300">
-                                    <strong class="text-white">Unlimited Muay Thai, Boxing & Wrestling classes</strong> for 6 weeks
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
+                                    <strong class="text-white font-semibold">Unlimited Muay Thai, Boxing & Wrestling classes</strong> for 6 weeks
                                 </p>
                             </div>
                             <div class="flex items-start gap-3">
-                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-red-500 flex items-center justify-center mt-1">
+                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-primary flex items-center justify-center mt-1">
                                     <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-base sm:text-lg text-gray-300">
-                                    <strong class="text-white">Personal coaching</strong> + weekly accountability check-ins
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
+                                    <strong class="text-white font-semibold">Personal coaching</strong> + weekly accountability check-ins
                                 </p>
                             </div>
                             <div class="flex items-start gap-3">
-                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-red-500 flex items-center justify-center mt-1">
+                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-primary flex items-center justify-center mt-1">
                                     <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-base sm:text-lg text-gray-300">
-                                    <strong class="text-white">Beginner-friendly training,</strong> no experience needed
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
+                                    <strong class="text-white font-semibold">Beginner-friendly training,</strong> no experience needed
                                 </p>
                             </div>
                             <div class="flex items-start gap-3">
-                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-red-500 flex items-center justify-center mt-1">
+                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-primary flex items-center justify-center mt-1">
                                     <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-base sm:text-lg text-gray-300">
-                                    <strong class="text-white">The Fighter's Guarantee:</strong> Get results or your money back
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
+                                    <strong class="text-white font-semibold">The Fighter's Guarantee:</strong> Get results or your money back
                                 </p>
                             </div>
                             <div class="flex items-start gap-3">
-                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-red-500 flex items-center justify-center mt-1">
+                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-primary flex items-center justify-center mt-1">
                                     <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-base sm:text-lg text-gray-300">
-                                    <strong class="text-white">Exclusive access to a private Challenge group</strong> — push, share, and grind alongside others chasing the same goal
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
+                                    <strong class="text-white font-semibold">Exclusive access to a private Challenge group</strong> — push, share, and grind alongside others chasing the same goal
                                 </p>
                             </div>
                             <div class="flex items-start gap-3">
-                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-red-500 flex items-center justify-center mt-1">
+                                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-primary flex items-center justify-center mt-1">
                                     <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-base sm:text-lg text-gray-300">
-                                    <strong class="text-white">Lifetime access to The Strikers Lab community</strong> — a supportive, ego-free gym family that's with you every step of the way
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
+                                    <strong class="text-white font-semibold">Lifetime access to The Strikers Lab community</strong> — a supportive, ego-free gym family that's with you every step of the way
                                 </p>
                             </div>
                         </div>
                         
                         <!-- Primary CTA -->
                         <div class="mb-6">
-                            <button onclick="trackCTAClick('hero-primary')" class="w-full lg:w-auto min-w-[400px] bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-black text-xl px-8 py-6 rounded-xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex items-center justify-center mb-4 uppercase tracking-wide">
+                            <button onclick="trackCTAClick('hero-primary')" class="w-full lg:w-auto min-w-[400px] btn-primary text-xl px-8 py-6 rounded-xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex items-center justify-center mb-4 uppercase tracking-wide">
                                 <svg class="w-6 h-6 mr-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                                 </svg>
                                 APPLY NOW – JOIN THE 6-WEEK SPRING SHRED CHALLENGE
                             </button>
-                            <div class="bg-gray-800/60 border border-red-500/50 rounded-lg px-6 py-3 backdrop-blur-sm">
-                                <p class="text-sm font-bold text-red-400 text-center uppercase tracking-wider">
+                            <div class="bg-card/60 border border-accent/50 rounded-lg px-6 py-3 backdrop-blur-sm">
+                                <p class="font-bold text-accent text-center uppercase tracking-wider font-body" style="font-size: 0.833rem;">
                                     GUARANTEED TO FIT YOUR SCHEDULE OR YOUR MONEY BACK
                                 </p>
                             </div>
@@ -367,15 +491,15 @@
                     <!-- Right Content - Placeholder for Combat Sports Image -->
                     <div class="hidden lg:flex items-center justify-center">
                         <div class="relative">
-                            <div class="bg-gradient-to-br from-red-600/20 to-gray-900/50 rounded-2xl p-8 backdrop-blur-sm border border-red-500/30">
+                            <div class="rounded-2xl p-8 backdrop-blur-sm border border-accent/30" style="background-color: #171A1C;">
                                 <div class="text-center text-white">
-                                    <div class="w-80 h-80 bg-gray-800/50 rounded-xl flex items-center justify-center mb-6">
-                                        <svg class="w-32 h-32 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <div class="w-80 h-80 rounded-xl flex items-center justify-center mb-6" style="background-color: #171A1C;">
+                                        <svg class="w-32 h-32 text-accent" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                         </svg>
                                     </div>
-                                    <h3 class="text-xl font-bold mb-2">Combat Sports Training</h3>
-                                    <p class="text-sm text-gray-300">Professional Muay Thai, Boxing & Wrestling</p>
+                                    <h4 class="font-semibold mb-2 font-heading" style="font-size: 1.728rem;">Combat Sports Training</h4>
+                                    <p class="text-gray-300 font-body" style="font-size: 0.833rem;">Professional Muay Thai, Boxing & Wrestling</p>
                                 </div>
                             </div>
                         </div>
@@ -385,18 +509,18 @@
         </section>
 
         <!-- Problem Agitation Section -->
-        <section class="py-20 lg:py-32 bg-gray-900 text-white">
+        <section class="py-20 lg:py-32 text-white" style="background-color: #000000;">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8">
+                    <h2 class="font-bold text-white mb-8 font-heading" style="font-size: 2.488rem;">
                         Sick of gyms, diets, and "fitness plans" that never stick?
                     </h2>
                     
-                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    <p class="text-gray-300 mb-8 leading-relaxed font-body" style="font-size: 1rem;">
                         Be honest with yourself — how many times have you started something and quit a few weeks later?
                     </p>
                     
-                    <div class="bg-gray-800 rounded-2xl p-8 shadow-lg border-l-4 border-orange-500 max-w-4xl mx-auto mb-12">
+                    <div class="card rounded-2xl p-8 shadow-lg border-l-4 border-orange-500 max-w-4xl mx-auto mb-12">
                         <div class="space-y-6">
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center mt-1">
@@ -404,7 +528,7 @@
                                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-lg text-gray-300">
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
                                     You joined a big-box gym... but felt awkward, bored, and unmotivated.
                                 </p>
                             </div>
@@ -414,7 +538,7 @@
                                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-lg text-gray-300">
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
                                     You tried a diet... only to bounce back as soon as "real life" got in the way.
                                 </p>
                             </div>
@@ -424,7 +548,7 @@
                                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-lg text-gray-300">
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
                                     You downloaded workout apps or YouTube routines... but with no accountability, you fell off.
                                 </p>
                             </div>
@@ -435,42 +559,42 @@
                         And the longer this cycle continues, the worse it gets:
                     </p>
                     
-                    <div class="bg-gray-800 rounded-2xl p-8 shadow-lg border-l-4 border-orange-500 max-w-4xl mx-auto mb-12">
+                    <div class="card rounded-2xl p-8 shadow-lg border-l-4 border-orange-500 max-w-4xl mx-auto mb-12">
                         <div class="space-y-6">
                             <div class="flex items-start gap-4">
-                                <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500 flex items-center justify-center mt-1">
+                                <div class="flex-shrink-0 w-6 h-6 rounded-full bg-accent flex items-center justify-center mt-1">
                                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-lg text-gray-300">
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
                                     The weight doesn't just stay — it creeps up year after year.
                                 </p>
                             </div>
                             <div class="flex items-start gap-4">
-                                <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500 flex items-center justify-center mt-1">
+                                <div class="flex-shrink-0 w-6 h-6 rounded-full bg-accent flex items-center justify-center mt-1">
                                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-lg text-gray-300">
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
                                     Your energy dips, your confidence takes a hit, and you stop recognising the person in the mirror.
                                 </p>
                             </div>
                             <div class="flex items-start gap-4">
-                                <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500 flex items-center justify-center mt-1">
+                                <div class="flex-shrink-0 w-6 h-6 rounded-full bg-accent flex items-center justify-center mt-1">
                                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-lg text-gray-300">
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">
                                     Some nights, you wonder if you'll ever break free of the rut.
                                 </p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="bg-gradient-to-r from-brand-50 to-white rounded-2xl p-8 shadow-xl border-2 border-brand-600 mb-12">
+                    <div class="rounded-2xl p-8 shadow-xl border-2 border-brand-600 mb-12" style="background-color: #171A1C;">
                         <p class="text-xl text-gray-200 mb-6 leading-relaxed">
                             That's why we created the <strong class="text-brand-600">6-Week Spring Shred Challenge</strong>. 
                             It's not a boring gym membership. It's not another "diet you'll hate." It's a 
@@ -484,7 +608,7 @@
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-lg text-gray-300">Burn fat and build real strength with Muay Thai, Boxing & Wrestling.</p>
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">Burn fat and build real strength with Muay Thai, Boxing & Wrestling.</p>
                             </div>
                             <div class="flex items-start gap-3">
                                 <div class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-600 flex items-center justify-center mt-1">
@@ -492,7 +616,7 @@
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-lg text-gray-300">Stay consistent with weekly accountability coaching.</p>
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">Stay consistent with weekly accountability coaching.</p>
                             </div>
                             <div class="flex items-start gap-3">
                                 <div class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-600 flex items-center justify-center mt-1">
@@ -500,7 +624,7 @@
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-lg text-gray-300">Train in a fun, safe, beginner-friendly environment.</p>
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">Train in a fun, safe, beginner-friendly environment.</p>
                             </div>
                             <div class="flex items-start gap-3">
                                 <div class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-600 flex items-center justify-center mt-1">
@@ -508,7 +632,7 @@
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <p class="text-lg text-gray-300">And walk out in 6 weeks with results you can see and confidence you can feel.</p>
+                                <p class="text-gray-300 font-body" style="font-size: 1rem;">And walk out in 6 weeks with results you can see and confidence you can feel.</p>
                             </div>
                         </div>
                     </div>
@@ -526,19 +650,19 @@
         </section>
 
         <!-- Social Proof Section -->
-        <section class="py-20 lg:py-32 bg-black">
+        <section class="py-20 lg:py-32" style="background-color: #000000;">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-6xl mx-auto text-center">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+                    <h2 class="font-bold text-white mb-6 font-heading" style="font-size: 2.488rem;">
                         Real People. Real Results. Real Community.
                     </h2>
                     
-                    <p class="text-xl text-gray-300 mb-16 max-w-3xl mx-auto">
+                    <p class="text-gray-300 mb-16 max-w-3xl mx-auto font-body" style="font-size: 1rem;">
                         You don't have to take our word for it — here's what members at The Strikers Lab are already saying.
                     </p>
                     
                     <!-- Google Rating Card -->
-                    <div class="card bg-gray-800 border border-gray-700 shadow-lg max-w-md mx-auto mb-16">
+                    <div class="card shadow-lg max-w-md mx-auto mb-16">
                         <div class="card-content flex items-center justify-center space-x-4 py-8">
                             <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
                                 <span class="text-white font-bold text-xl">G</span>
@@ -551,29 +675,29 @@
                                         ⭐⭐⭐⭐⭐
                                     </div>
                                 </div>
-                                <p class="text-sm text-gray-400">Based on 41 reviews</p>
+                                <p class="text-gray-400 font-body" style="font-size: 0.833rem;">Based on 41 reviews</p>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Testimonials Grid Placeholder -->
                     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
-                        <div class="card bg-gray-800 border-2 border-dashed border-gray-600">
+                        <div class="card border-2 border-dashed border-gray-600">
                             <div class="card-content text-center py-12">
                                 <h3 class="font-semibold text-gray-400 mb-2">Google Reviews</h3>
-                                <p class="text-gray-400 text-sm">Real customer reviews will be displayed here</p>
+                                <p class="text-gray-400 font-body" style="font-size: 0.833rem;">Real customer reviews will be displayed here</p>
                             </div>
                         </div>
-                        <div class="card bg-gray-800 border-2 border-dashed border-gray-600">
+                        <div class="card border-2 border-dashed border-gray-600">
                             <div class="card-content text-center py-12">
                                 <h3 class="font-semibold text-gray-400 mb-2">Customer Testimonials</h3>
-                                <p class="text-gray-400 text-sm">Member success stories will be featured here</p>
+                                <p class="text-gray-400 font-body" style="font-size: 0.833rem;">Member success stories will be featured here</p>
                             </div>
                         </div>
-                        <div class="card bg-gray-800 border-2 border-dashed border-gray-600">
+                        <div class="card border-2 border-dashed border-gray-600">
                             <div class="card-content text-center py-12">
                                 <h3 class="font-semibold text-gray-400 mb-2">Video Reviews</h3>
-                                <p class="text-gray-400 text-sm">Video testimonials will be embedded here</p>
+                                <p class="text-gray-400 font-body" style="font-size: 0.833rem;">Video testimonials will be embedded here</p>
                             </div>
                         </div>
                     </div>
@@ -591,63 +715,63 @@
         </section>
 
         <!-- Transformations Section -->
-        <section class="py-20 lg:py-32 bg-gray-900">
+        <section class="py-20 lg:py-32" style="background-color: #000000;">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-6xl mx-auto text-center">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-16">
+                    <h2 class="font-bold text-white mb-16 font-heading" style="font-size: 2.488rem;">
                         Proven Transformations
                     </h2>
                     
                     <!-- Transformation Photos Grid -->
                     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-16">
                         {/* Repeat this pattern for 6-8 transformation placeholders */}
-                        <div class="card bg-gray-800 border-gray-700 group hover:scale-105 transition-transform duration-300">
+                        <div class="card border-gray-700 group hover:scale-105 transition-transform duration-300">
                             <div class="relative aspect-square bg-gradient-to-br from-brand-600/20 to-brand-800/20 rounded-t-xl">
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <div class="text-center">
                                         <div class="text-brand-600 font-bold text-xs bg-brand-600 text-white px-3 py-1 rounded-full mb-4">
                                             TSL TRANSFORMATION
                                         </div>
-                                        <p class="text-gray-400 text-sm">Before & After</p>
+                                        <p class="text-gray-400 font-body" style="font-size: 0.833rem;">Before & After</p>
                                         <p class="text-gray-300 text-xs mt-2">Real transformation photos</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card bg-gray-800 border-gray-700 group hover:scale-105 transition-transform duration-300">
+                        <div class="card border-gray-700 group hover:scale-105 transition-transform duration-300">
                             <div class="relative aspect-square bg-gradient-to-br from-brand-600/20 to-brand-800/20 rounded-t-xl">
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <div class="text-center">
                                         <div class="text-brand-600 font-bold text-xs bg-brand-600 text-white px-3 py-1 rounded-full mb-4">
                                             TSL TRANSFORMATION
                                         </div>
-                                        <p class="text-gray-400 text-sm">Before & After</p>
+                                        <p class="text-gray-400 font-body" style="font-size: 0.833rem;">Before & After</p>
                                         <p class="text-gray-300 text-xs mt-2">Real transformation photos</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card bg-gray-800 border-gray-700 group hover:scale-105 transition-transform duration-300">
+                        <div class="card border-gray-700 group hover:scale-105 transition-transform duration-300">
                             <div class="relative aspect-square bg-gradient-to-br from-brand-600/20 to-brand-800/20 rounded-t-xl">
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <div class="text-center">
                                         <div class="text-brand-600 font-bold text-xs bg-brand-600 text-white px-3 py-1 rounded-full mb-4">
                                             TSL TRANSFORMATION
                                         </div>
-                                        <p class="text-gray-400 text-sm">Before & After</p>
+                                        <p class="text-gray-400 font-body" style="font-size: 0.833rem;">Before & After</p>
                                         <p class="text-gray-300 text-xs mt-2">Real transformation photos</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card bg-gray-800 border-gray-700 group hover:scale-105 transition-transform duration-300">
+                        <div class="card border-gray-700 group hover:scale-105 transition-transform duration-300">
                             <div class="relative aspect-square bg-gradient-to-br from-brand-600/20 to-brand-800/20 rounded-t-xl">
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <div class="text-center">
                                         <div class="text-brand-600 font-bold text-xs bg-brand-600 text-white px-3 py-1 rounded-full mb-4">
                                             TSL TRANSFORMATION
                                         </div>
-                                        <p class="text-gray-400 text-sm">Before & After</p>
+                                        <p class="text-gray-400 font-body" style="font-size: 0.833rem;">Before & After</p>
                                         <p class="text-gray-300 text-xs mt-2">Real transformation photos</p>
                                     </div>
                                 </div>
@@ -668,20 +792,20 @@
         </section>
 
         <!-- Why This Works Section -->
-        <section class="py-20 lg:py-32 bg-gray-900">
+        <section class="py-20 lg:py-32" style="background-color: #000000;">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-12 text-center">
+                    <h2 class="font-bold text-white mb-12 text-center font-heading" style="font-size: 2.488rem;">
                         Why This Challenge Works<br>
-                        <span class="text-brand-600">(When Everything Else Has Failed You)</span>
+                        <span class="text-accent">(When Everything Else Has Failed You)</span>
                     </h2>
                     
-                    <p class="text-xl text-gray-300 mb-12 text-center leading-relaxed">
+                    <p class="text-gray-300 mb-12 text-center leading-relaxed font-body" style="font-size: 1rem;">
                         We've built the 6-Week Spring Shred Challenge to solve the exact reasons people quit gyms, diets, and "fitness plans."
                     </p>
                     
                     <div class="space-y-8 mb-16">
-                        <div class="card bg-gray-800 border border-gray-700 shadow-lg">
+                        <div class="card shadow-lg">
                             <div class="card-content">
                                 <div class="flex items-start space-x-4">
                                     <div class="flex-shrink-0 w-12 h-12 bg-brand-600 rounded-full flex items-center justify-center">
@@ -690,14 +814,14 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold text-white mb-2">Not just workouts — a proven system.</h3>
-                                        <p class="text-gray-300">You'll follow a clear 6-week roadmap designed to burn fat, build confidence, and teach real skills.</p>
+                                        <h4 class="font-semibold text-white mb-2 font-heading" style="font-size: 1.728rem;">Not just workouts — a proven system.</h4>
+                                        <p class="text-gray-300 font-body" style="font-size: 1rem;">You'll follow a clear 6-week roadmap designed to burn fat, build confidence, and teach real skills.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="card bg-gray-800 border border-gray-700 shadow-lg">
+                        <div class="card shadow-lg">
                             <div class="card-content">
                                 <div class="flex items-start space-x-4">
                                     <div class="flex-shrink-0 w-12 h-12 bg-brand-600 rounded-full flex items-center justify-center">
@@ -706,14 +830,14 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold text-white mb-2">Accountability built in.</h3>
-                                        <p class="text-gray-300">Weekly weigh-ins and coach check-ins keep you on track (no more falling off after week two).</p>
+                                        <h4 class="font-semibold text-white mb-2 font-heading" style="font-size: 1.728rem;">Accountability built in.</h4>
+                                        <p class="text-gray-300 font-body" style="font-size: 1rem;">Weekly weigh-ins and coach check-ins keep you on track (no more falling off after week two).</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="card bg-gray-800 border border-gray-700 shadow-lg">
+                        <div class="card shadow-lg">
                             <div class="card-content">
                                 <div class="flex items-start space-x-4">
                                     <div class="flex-shrink-0 w-12 h-12 bg-brand-600 rounded-full flex items-center justify-center">
@@ -722,14 +846,14 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold text-white mb-2">Beginner-friendly and safe.</h3>
-                                        <p class="text-gray-300">You'll never get thrown into sparring or pressured to go beyond your level.</p>
+                                        <h4 class="font-semibold text-white mb-2 font-heading" style="font-size: 1.728rem;">Beginner-friendly and safe.</h4>
+                                        <p class="text-gray-300 font-body" style="font-size: 1rem;">You'll never get thrown into sparring or pressured to go beyond your level.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="card bg-gray-800 border border-gray-700 shadow-lg">
+                        <div class="card shadow-lg">
                             <div class="card-content">
                                 <div class="flex items-start space-x-4">
                                     <div class="flex-shrink-0 w-12 h-12 bg-brand-600 rounded-full flex items-center justify-center">
@@ -738,14 +862,14 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold text-white mb-2">Results you can see and feel.</h3>
-                                        <p class="text-gray-300">In just 6 weeks, you'll notice your body changing, your energy rising, and your confidence growing.</p>
+                                        <h4 class="font-semibold text-white mb-2 font-heading" style="font-size: 1.728rem;">Results you can see and feel.</h4>
+                                        <p class="text-gray-300 font-body" style="font-size: 1rem;">In just 6 weeks, you'll notice your body changing, your energy rising, and your confidence growing.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="card bg-gray-800 border border-gray-700 shadow-lg">
+                        <div class="card shadow-lg">
                             <div class="card-content">
                                 <div class="flex items-start space-x-4">
                                     <div class="flex-shrink-0 w-12 h-12 bg-brand-600 rounded-full flex items-center justify-center">
@@ -754,8 +878,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold text-white mb-2">Risk-free commitment.</h3>
-                                        <p class="text-gray-300">If you show up and don't get results, you get your money back.</p>
+                                        <h4 class="font-semibold text-white mb-2 font-heading" style="font-size: 1.728rem;">Risk-free commitment.</h4>
+                                        <p class="text-gray-300 font-body" style="font-size: 1rem;">If you show up and don't get results, you get your money back.</p>
                                     </div>
                                 </div>
                             </div>
@@ -778,13 +902,13 @@
                     </div>
                     
                     <!-- Testimonial -->
-                    <div class="card bg-gray-800 border border-gray-700 border-l-4 border-brand-600 shadow-lg">
+                    <div class="card border-l-4 border-accent shadow-lg">
                         <div class="card-content text-center py-8">
-                            <div class="text-6xl text-brand-600 mb-4">"</div>
-                            <p class="text-xl italic text-gray-200 mb-4 leading-relaxed">
+                            <div class="text-6xl text-accent mb-4 font-heading">"</div>
+                            <p class="text-xl italic text-gray-200 mb-4 leading-relaxed font-body">
                                 One of the most welcoming communities I've ever encountered. No egos, just passion.
                             </p>
-                            <p class="font-bold text-brand-600">– Ewan R.</p>
+                            <p class="font-bold text-accent font-body">– Ewan R.</p>
                         </div>
                     </div>
                 </div>
@@ -792,83 +916,101 @@
         </section>
 
         <!-- FAQ Section with Shadcn Accordion -->
-        <section class="py-20 lg:py-32 bg-gray-900">
+        <section class="py-20 lg:py-32" style="background-color: #000000;">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-16 text-center">
+                    <h2 class="font-bold text-white mb-16 text-center font-heading" style="font-size: 2.488rem;">
                         Frequently Asked Questions
                     </h2>
                     
                     <div class="space-y-4 mb-16">
-                        <div class="accordion-item bg-gray-800 rounded-lg">
-                            <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200" onclick="toggleAccordion(this)">
-                                <span class="text-lg font-semibold">Do I need experience?</span>
-                                <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="accordion-item rounded-lg border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4" style="background-color: #171A1C;">
+                            <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                    aria-expanded="false" 
+                                    aria-controls="faq-1"
+                                    onclick="toggleAccordion(this)">
+                                <span class="text-base sm:text-lg font-semibold group-hover:text-brand-600 transition-colors duration-300 pr-4">Do I need experience?</span>
+                                <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-brand-600 transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                                <p class="leading-relaxed">Not at all. Most people who join are complete beginners. We start with fundamentals and progress at your pace.</p>
+                            <div id="faq-1" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-1">
+                                <p class="leading-relaxed font-body" style="font-size: 1rem;">Not at all. Most people who join are complete beginners. We start with fundamentals and progress at your pace.</p>
                             </div>
                         </div>
                         
-                        <div class="accordion-item bg-gray-800 rounded-lg">
-                            <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200" onclick="toggleAccordion(this)">
-                                <span class="text-lg font-semibold">What if I'm unfit, older, or overweight?</span>
-                                <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="accordion-item rounded-lg border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4" style="background-color: #171A1C;">
+                            <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                    aria-expanded="false" 
+                                    aria-controls="faq-2"
+                                    onclick="toggleAccordion(this)">
+                                <span class="text-base sm:text-lg font-semibold group-hover:text-brand-600 transition-colors duration-300 pr-4">What if I'm unfit, older, or overweight?</span>
+                                <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-brand-600 transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                                <p class="leading-relaxed">That's exactly who this challenge is designed for. Classes are beginner-friendly and tailored to your fitness level.</p>
+                            <div id="faq-2" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-2">
+                                <p class="leading-relaxed font-body" style="font-size: 1rem;">That's exactly who this challenge is designed for. Classes are beginner-friendly and tailored to your fitness level.</p>
                             </div>
                         </div>
                         
-                        <div class="accordion-item bg-gray-800 rounded-lg">
-                            <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200" onclick="toggleAccordion(this)">
-                                <span class="text-lg font-semibold">Will I get hurt?</span>
-                                <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="accordion-item rounded-lg border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4" style="background-color: #171A1C;">
+                            <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                    aria-expanded="false" 
+                                    aria-controls="faq-3"
+                                    onclick="toggleAccordion(this)">
+                                <span class="text-base sm:text-lg font-semibold group-hover:text-brand-600 transition-colors duration-300 pr-4">Will I get hurt?</span>
+                                <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-brand-600 transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                                <p class="leading-relaxed">Safety is our priority. Training is coach-led, with modifications for every level. You'll never be pushed into sparring or anything beyond your comfort zone.</p>
+                            <div id="faq-3" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-3">
+                                <p class="leading-relaxed font-body" style="font-size: 1rem;">Safety is our priority. Training is coach-led, with modifications for every level. You'll never be pushed into sparring or anything beyond your comfort zone.</p>
                             </div>
                         </div>
                         
-                        <div class="accordion-item bg-gray-800 rounded-lg">
-                            <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200" onclick="toggleAccordion(this)">
-                                <span class="text-lg font-semibold">What if I don't have much time?</span>
-                                <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="accordion-item rounded-lg border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4" style="background-color: #171A1C;">
+                            <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                    aria-expanded="false" 
+                                    aria-controls="faq-4"
+                                    onclick="toggleAccordion(this)">
+                                <span class="text-base sm:text-lg font-semibold group-hover:text-brand-600 transition-colors duration-300 pr-4">What if I don't have much time?</span>
+                                <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-brand-600 transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                                <p class="leading-relaxed">Our flexible timetable (morning, evening, and weekend classes) means even 2–3 sessions per week delivers results.</p>
+                            <div id="faq-4" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-4">
+                                <p class="leading-relaxed font-body" style="font-size: 1rem;">Our flexible timetable (morning, evening, and weekend classes) means even 2–3 sessions per week delivers results.</p>
                             </div>
                         </div>
                         
-                        <div class="accordion-item bg-gray-800 rounded-lg">
-                            <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200" onclick="toggleAccordion(this)">
-                                <span class="text-lg font-semibold">How much weight will I lose?</span>
-                                <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="accordion-item rounded-lg border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4" style="background-color: #171A1C;">
+                            <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                    aria-expanded="false" 
+                                    aria-controls="faq-5"
+                                    onclick="toggleAccordion(this)">
+                                <span class="text-base sm:text-lg font-semibold group-hover:text-brand-600 transition-colors duration-300 pr-4">How much weight will I lose?</span>
+                                <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-brand-600 transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                                <p class="leading-relaxed">Results vary, but most adults drop 3–6kg in 6 weeks. You'll also gain confidence, energy, and strength — which are just as valuable as the number on the scale.</p>
+                            <div id="faq-5" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-5">
+                                <p class="leading-relaxed font-body" style="font-size: 1rem;">Results vary, but most adults drop 3–6kg in 6 weeks. You'll also gain confidence, energy, and strength — which are just as valuable as the number on the scale.</p>
                             </div>
                         </div>
                         
-                        <div class="accordion-item bg-gray-800 rounded-lg">
-                            <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200" onclick="toggleAccordion(this)">
-                                <span class="text-lg font-semibold">What if I don't hit my goals?</span>
-                                <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="accordion-item rounded-lg border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4" style="background-color: #171A1C;">
+                            <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                    aria-expanded="false" 
+                                    aria-controls="faq-6"
+                                    onclick="toggleAccordion(this)">
+                                <span class="text-base sm:text-lg font-semibold group-hover:text-brand-600 transition-colors duration-300 pr-4">What if I don't hit my goals?</span>
+                                <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-brand-600 transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                                <p class="leading-relaxed">That's where the Fighter's Guarantee comes in. Show up and complete the challenge, and your deposit is refunded. Either way, you walk away fitter, stronger, and more confident.</p>
+                            <div id="faq-6" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-6">
+                                <p class="leading-relaxed font-body" style="font-size: 1rem;">That's where the Fighter's Guarantee comes in. Show up and complete the challenge, and your deposit is refunded. Either way, you walk away fitter, stronger, and more confident.</p>
                             </div>
                         </div>
                     </div>
@@ -886,10 +1028,10 @@
         </section>
 
         <!-- Final Urgency Section -->
-        <section class="py-20 lg:py-32 bg-gradient-to-r from-gray-800 to-gray-900">
+        <section class="py-20 lg:py-32" style="background-color: #000000;">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-12">
+                    <h2 class="font-bold text-white mb-12 font-heading" style="font-size: 2.488rem;">
                         Your Next 6 Weeks Could Change Everything
                     </h2>
                     
@@ -918,11 +1060,11 @@
                         <p class="text-2xl font-bold text-white mt-8">Either way, you can't lose.</p>
                     </div>
                     
-                    <div class="bg-gray-800 rounded-2xl p-8 mb-12 text-white">
-                        <h3 class="text-3xl font-bold mb-4 text-brand-600">But here's the catch →</h3>
+                    <div class="card rounded-2xl p-8 mb-12 text-white">
+                        <h3 class="font-semibold mb-4 text-accent font-heading" style="font-size: 2.074rem;">But here's the catch →</h3>
                         <p class="text-xl mb-6">we're only accepting <strong>15 people</strong> into this intake. Once the spots are filled, enrollment closes — and you'll have to wait for the next round.</p>
                         
-                        <div class="bg-brand-600 text-white px-6 py-4 rounded-xl font-bold text-xl inline-block mb-6">
+                        <div class="bg-primary text-white px-6 py-4 rounded-xl font-bold text-xl inline-block mb-6">
                             Only 15 Spots Available
                         </div>
                         
@@ -951,13 +1093,13 @@
         </section>
 
         <!-- Final Booking Section -->
-        <section id="booking" class="py-20 lg:py-32 bg-black">
+        <section id="booking" class="py-20 lg:py-32" style="background-color: #000000;">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <div class="max-w-3xl mx-auto">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8">
+                    <h2 class="font-bold text-white mb-8 font-heading" style="font-size: 2.488rem;">
                         Ready to Transform Your Life?
                     </h2>
-                    <p class="text-xl text-gray-300 mb-12 leading-relaxed">
+                    <p class="text-gray-300 mb-12 leading-relaxed font-body" style="font-size: 1rem;">
                         Click the button below to secure your spot in the 6-Week Spring Shred Challenge
                     </p>
                     
@@ -970,7 +1112,7 @@
                         </button>
                     </div>
                     
-                    <div class="text-gray-400 text-sm">
+                    <div class="text-gray-400 font-body" style="font-size: 0.833rem;">
                         <p class="mb-2">By clicking this button, you'll be redirected to our secure booking system.</p>
                         <p><strong>The Strikers Lab</strong> | Sydney's Premier Combat Sports Gym</p>
                     </div>
@@ -983,17 +1125,17 @@
     <script>
         // Enhanced JavaScript for Tailwind implementation
         
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('bg-black/98', 'shadow-2xl');
-                header.classList.remove('bg-black/95');
-            } else {
-                header.classList.add('bg-black/95');
-                header.classList.remove('bg-black/98', 'shadow-2xl');
-            }
-        });
+        // Header scroll effect (disabled since header is now static)
+        // window.addEventListener('scroll', function() {
+        //     const header = document.getElementById('header');
+        //     if (window.scrollY > 50) {
+        //         header.classList.add('shadow-2xl');
+        //         header.style.backgroundColor = '#000000';
+        //     } else {
+        //         header.classList.remove('shadow-2xl');
+        //         header.style.backgroundColor = '#000000';
+        //     }
+        // });
         
         // CTA Click Tracking
         function trackCTAClick(location) {
@@ -1033,29 +1175,53 @@
             });
         });
         
-        // Accordion functionality
+        // Enhanced Accordion functionality from Style Guide
         function toggleAccordion(button) {
-            const content = button.nextElementSibling;
-            const svg = button.querySelector('svg');
-            const isOpen = content.style.display !== 'none';
+            const accordionItem = button.closest('.accordion-item');
+            const content = accordionItem.querySelector('.accordion-content');
+            const arrow = button.querySelector('.accordion-arrow');
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
             
-            // Close all accordions first
-            document.querySelectorAll('.accordion-content').forEach(acc => {
-                acc.style.display = 'none';
-            });
-            document.querySelectorAll('.accordion-trigger svg').forEach(icon => {
-                icon.style.transform = 'rotate(0deg)';
-            });
-            
-            // Open the clicked accordion if it was closed
-            if (isOpen) {
-                content.style.display = 'none';
-                svg.style.transform = 'rotate(0deg)';
+            // Toggle the content with smooth animation
+            if (isExpanded) {
+                // Close accordion
+                content.classList.remove('open');
+                arrow.classList.remove('rotated');
+                button.setAttribute('aria-expanded', 'false');
             } else {
-                content.style.display = 'block';
-                svg.style.transform = 'rotate(180deg)';
+                // Close all other accordions first
+                document.querySelectorAll('.accordion-trigger').forEach(otherTrigger => {
+                    const otherItem = otherTrigger.closest('.accordion-item');
+                    const otherContent = otherItem.querySelector('.accordion-content');
+                    const otherArrow = otherTrigger.querySelector('.accordion-arrow');
+                    
+                    if (otherContent !== content) {
+                        otherContent.classList.remove('open');
+                        otherArrow.classList.remove('rotated');
+                        otherTrigger.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                // Open current accordion
+                content.classList.add('open');
+                arrow.classList.add('rotated');
+                button.setAttribute('aria-expanded', 'true');
             }
         }
+        
+        // Add keyboard navigation support for accordions
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+            
+            accordionTriggers.forEach(trigger => {
+                trigger.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleAccordion(this);
+                    }
+                });
+            });
+        });
         
         // Intersection Observer for animations
         const observerOptions = {

@@ -19,7 +19,7 @@
                     colors: {
                         'bg': '#000000',
                         'primary': '#dc2626',
-                        'accent': '#10b981',
+                        'accent': '#F97316',
                         'card': '#171A1C',
                     },
                     fontFamily: {
@@ -46,6 +46,61 @@
         
         .card {
             @apply bg-card border border-gray-700 rounded-lg p-6;
+        }
+        
+        /* Accordion Styles - Best Practices */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1.5rem;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        .accordion-content.open {
+            max-height: 1000px;
+            padding: 1rem 2rem 1.5rem 2rem;
+            opacity: 1;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease 0.1s;
+        }
+        
+        .accordion-arrow {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .accordion-arrow.rotated {
+            transform: rotate(180deg);
+        }
+        
+        /* Focus states for accessibility */
+        .accordion-trigger:focus {
+            outline: none;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 640px) {
+            .accordion-trigger {
+                padding: 1rem 1rem;
+                font-size: 1rem;
+            }
+            
+            .accordion-content {
+                padding: 0 1rem;
+            }
+            
+            .accordion-content.open {
+                padding: 0.75rem 1.5rem 1rem 1.5rem;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .accordion-trigger {
+                padding: 1.25rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -75,9 +130,9 @@
                     <code class="text-xs text-gray-400">#dc2626</code>
                 </div>
                 <div class="text-center">
-                    <div class="w-20 h-20 rounded-lg mx-auto mb-2" style="background-color: #10b981;"></div>
+                    <div class="w-20 h-20 rounded-lg mx-auto mb-2" style="background-color: #F97316;"></div>
                     <p class="text-sm">Accent</p>
-                    <code class="text-xs text-gray-400">#10b981</code>
+                    <code class="text-xs text-gray-400">#F97316</code>
                 </div>
                 <div class="text-center">
                     <div class="w-20 h-20 rounded-lg mx-auto mb-2 border-2 border-gray-600" style="background-color: #171A1C;"></div>
@@ -352,80 +407,92 @@
                 <!-- FAQ Items -->
                 <div class="space-y-4">
                     <!-- FAQ 1 -->
-                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
-                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
-                            <span class="text-lg font-semibold font-heading">Do I need experience?</span>
-                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="accordion-item rounded-lg border border-gray-600 bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
+                        <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                aria-expanded="false" 
+                                aria-controls="faq-1">
+                            <span class="text-base sm:text-lg font-semibold font-heading group-hover:text-primary transition-colors duration-300 pr-4">Do I need experience?</span>
+                            <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-primary transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                            <p class="leading-relaxed font-body">Not at all. Most people who join are complete beginners. We start with fundamentals and progress at your pace.</p>
+                        <div id="faq-1" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-1">
+                            <p class="leading-relaxed font-body text-sm sm:text-base">Not at all. Most people who join are complete beginners. We start with fundamentals and progress at your pace. This is a longer response to show how the accordion content looks when expanded with more text content.</p>
                         </div>
                     </div>
 
                     <!-- FAQ 2 -->
-                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
-                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
-                            <span class="text-lg font-semibold font-heading">What if I'm unfit, older, or overweight?</span>
-                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="accordion-item rounded-lg border border-gray-600 bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
+                        <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                aria-expanded="false" 
+                                aria-controls="faq-2">
+                            <span class="text-base sm:text-lg font-semibold font-heading group-hover:text-primary transition-colors duration-300 pr-4">What if I'm unfit, older, or overweight?</span>
+                            <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-primary transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                            <p class="leading-relaxed font-body">That's exactly who this challenge is designed for. Classes are beginner-friendly and tailored to your fitness level.</p>
+                        <div id="faq-2" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-2">
+                            <p class="leading-relaxed font-body text-sm sm:text-base">That's exactly who this challenge is designed for. Classes are beginner-friendly and tailored to your fitness level. We have members of all ages and fitness levels, from complete beginners to those returning to fitness after a break. Our coaches provide modifications for every exercise.</p>
                         </div>
                     </div>
 
                     <!-- FAQ 3 -->
-                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
-                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
-                            <span class="text-lg font-semibold font-heading">Will I get hurt?</span>
-                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="accordion-item rounded-lg border border-gray-600 bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
+                        <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                aria-expanded="false" 
+                                aria-controls="faq-3">
+                            <span class="text-base sm:text-lg font-semibold font-heading group-hover:text-primary transition-colors duration-300 pr-4">Will I get hurt?</span>
+                            <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-primary transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                            <p class="leading-relaxed font-body">Safety is our priority. Training is coach-led, with modifications for every level. You'll never be pushed into sparring or anything beyond your comfort zone.</p>
+                        <div id="faq-3" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-3">
+                            <p class="leading-relaxed font-body text-sm sm:text-base">Safety is our priority. Training is coach-led, with modifications for every level. You'll never be pushed into sparring or anything beyond your comfort zone. All exercises are demonstrated first, and our coaches watch for proper form throughout the session.</p>
                         </div>
                     </div>
 
                     <!-- FAQ 4 -->
-                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
-                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
-                            <span class="text-lg font-semibold font-heading">What if I don't have much time?</span>
-                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="accordion-item rounded-lg border border-gray-600 bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
+                        <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                aria-expanded="false" 
+                                aria-controls="faq-4">
+                            <span class="text-base sm:text-lg font-semibold font-heading group-hover:text-primary transition-colors duration-300 pr-4">What if I don't have much time?</span>
+                            <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-primary transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                            <p class="leading-relaxed font-body">Our flexible timetable (morning, evening, and weekend classes) means even 2–3 sessions per week delivers results.</p>
+                        <div id="faq-4" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-4">
+                            <p class="leading-relaxed font-body text-sm sm:text-base">Our flexible timetable (morning, evening, and weekend classes) means even 2–3 sessions per week delivers results. Each session is designed to be efficient and effective, maximizing your time investment. We also provide home workout options for busy schedules.</p>
                         </div>
                     </div>
 
                     <!-- FAQ 5 -->
-                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
-                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
-                            <span class="text-lg font-semibold font-heading">How much weight will I lose?</span>
-                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="accordion-item rounded-lg border border-gray-600 bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
+                        <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                aria-expanded="false" 
+                                aria-controls="faq-5">
+                            <span class="text-base sm:text-lg font-semibold font-heading group-hover:text-primary transition-colors duration-300 pr-4">How much weight will I lose?</span>
+                            <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-primary transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                            <p class="leading-relaxed font-body">Results vary, but most adults drop 3–6kg in 6 weeks. You'll also gain confidence, energy, and strength — which are just as valuable as the number on the scale.</p>
+                        <div id="faq-5" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-5">
+                            <p class="leading-relaxed font-body text-sm sm:text-base">Results vary, but most adults drop 3–6kg in 6 weeks. You'll also gain confidence, energy, and strength — which are just as valuable as the number on the scale. Remember, this is about sustainable lifestyle changes, not just quick weight loss.</p>
                         </div>
                     </div>
 
                     <!-- FAQ 6 -->
-                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
-                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
-                            <span class="text-lg font-semibold font-heading">What if I don't hit my goals?</span>
-                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="accordion-item rounded-lg border border-gray-600 bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
+                        <button class="accordion-trigger w-full text-left px-4 sm:px-6 py-4 sm:py-6 text-white hover:bg-gray-700/50 transition-all duration-300 flex items-center justify-between rounded-t-lg group focus:outline-none" 
+                                aria-expanded="false" 
+                                aria-controls="faq-6">
+                            <span class="text-base sm:text-lg font-semibold font-heading group-hover:text-primary transition-colors duration-300 pr-4">What if I don't hit my goals?</span>
+                            <svg class="w-5 h-5 accordion-arrow text-gray-400 group-hover:text-primary transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
-                            <p class="leading-relaxed font-body">That's where the Fighter's Guarantee comes in. Show up and complete the challenge, and your deposit is refunded. Either way, you walk away fitter, stronger, and more confident.</p>
+                        <div id="faq-6" class="accordion-content text-gray-300 rounded-b-lg" role="region" aria-labelledby="faq-6">
+                            <p class="leading-relaxed font-body text-sm sm:text-base">That's where the Fighter's Guarantee comes in. Show up and complete the challenge, and your deposit is refunded. Either way, you walk away fitter, stronger, and more confident. We're so confident in our program that we're willing to put our money where our mouth is.</p>
                         </div>
                     </div>
                 </div>
@@ -437,5 +504,55 @@
 
         </section>
     </div>
+
+    <!-- JavaScript for Accordion Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+            
+            accordionTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function() {
+                    const accordionItem = this.closest('.accordion-item');
+                    const content = accordionItem.querySelector('.accordion-content');
+                    const arrow = this.querySelector('.accordion-arrow');
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    
+                    // Toggle the content with smooth animation
+                    if (isExpanded) {
+                        // Close accordion
+                        content.classList.remove('open');
+                        arrow.classList.remove('rotated');
+                        this.setAttribute('aria-expanded', 'false');
+                    } else {
+                        // Close all other accordions first
+                        accordionTriggers.forEach(otherTrigger => {
+                            const otherItem = otherTrigger.closest('.accordion-item');
+                            const otherContent = otherItem.querySelector('.accordion-content');
+                            const otherArrow = otherTrigger.querySelector('.accordion-arrow');
+                            
+                            if (otherContent !== content) {
+                                otherContent.classList.remove('open');
+                                otherArrow.classList.remove('rotated');
+                                otherTrigger.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                        
+                        // Open current accordion
+                        content.classList.add('open');
+                        arrow.classList.add('rotated');
+                        this.setAttribute('aria-expanded', 'true');
+                    }
+                });
+                
+                // Keyboard navigation support
+                trigger.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
