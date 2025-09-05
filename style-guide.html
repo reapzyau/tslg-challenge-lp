@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Style Guide</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bg': '#000000',
+                        'primary': '#dc2626',
+                        'accent': '#10b981',
+                        'card': '#171A1C',
+                    },
+                    fontFamily: {
+                        'heading': ['Manrope', 'sans-serif'],
+                        'body': ['Sora', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .btn-primary {
+            @apply bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg font-body hover:opacity-90 transition-opacity shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200;
+        }
+        
+        .btn-secondary {
+            @apply bg-transparent border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold text-lg font-body hover:bg-primary hover:text-white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+        }
+        
+        .btn-ghost {
+            @apply bg-transparent text-white px-4 py-2 font-medium text-base font-body hover:text-accent underline hover:no-underline transition-all duration-200;
+        }
+        
+        .card {
+            @apply bg-card border border-gray-700 rounded-lg p-6;
+        }
+    </style>
+</head>
+<body style="background-color: #000000;" class="text-white min-h-screen">
+    <!-- Header -->
+    <header class="border-b border-gray-700 py-6">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-2xl font-bold font-heading">Simple Style Guide</h1>
+        </div>
+    </header>
+
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        
+        <!-- Colors -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold mb-6">Colors</h2>
+            
+            <div class="grid grid-cols-4 gap-4">
+                <div class="text-center">
+                    <div class="w-20 h-20 rounded-lg mx-auto mb-2 border-2 border-gray-600" style="background-color: #000000;"></div>
+                    <p class="text-sm">Background</p>
+                    <code class="text-xs text-gray-400">#000000</code>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 rounded-lg mx-auto mb-2" style="background-color: #dc2626;"></div>
+                    <p class="text-sm font-bold">Primary</p>
+                    <code class="text-xs text-gray-400">#dc2626</code>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 rounded-lg mx-auto mb-2" style="background-color: #10b981;"></div>
+                    <p class="text-sm">Accent</p>
+                    <code class="text-xs text-gray-400">#10b981</code>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 rounded-lg mx-auto mb-2 border-2 border-gray-600" style="background-color: #171A1C;"></div>
+                    <p class="text-sm">Card</p>
+                    <code class="text-xs text-gray-400">#171A1C</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold mb-6 font-heading">Typography</h2>
+            
+            <div class="space-y-8">
+                <!-- Headings -->
+                <div>
+                    <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Headings (Manrope)</h3>
+                    <div class="space-y-3">
+                        <h1 class="font-bold font-heading" style="font-size: 2.986rem;">H1 - Hero Headline (2.986rem)</h1>
+                        <h2 class="font-bold font-heading" style="font-size: 2.488rem;">H2 - Section Title (2.488rem)</h2>
+                        <h3 class="font-semibold font-heading" style="font-size: 2.074rem;">H3 - Subsection (2.074rem)</h3>
+                        <h4 class="font-semibold font-heading" style="font-size: 1.728rem;">H4 - Card Title (1.728rem)</h4>
+                        <h5 class="font-medium font-heading" style="font-size: 1.44rem;">H5 - Small Heading (1.44rem)</h5>
+                        <h6 class="font-medium font-heading" style="font-size: 1.2rem;">H6 - Label (1.2rem)</h6>
+                    </div>
+                </div>
+
+                <!-- Body Text -->
+                <div>
+                    <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Body Text (Sora)</h3>
+                    <div class="space-y-3">
+                        <p class="font-body" style="font-size: 1rem;">Paragraph - Regular body text (1rem)</p>
+                        <p class="font-body text-gray-400" style="font-size: 0.833rem;">Small - For captions, labels, metadata (0.833rem)</p>
+                        <p class="font-body text-gray-500" style="font-size: 0.694rem;">Extra Small - For fine print, legal text (0.694rem)</p>
+                    </div>
+                </div>
+
+                <!-- Font Weights -->
+                <div>
+                    <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Font Weights</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-heading text-base mb-1"><strong>Manrope (Headings)</strong></p>
+                            <p class="font-heading font-normal text-sm text-gray-400">400 - Regular</p>
+                            <p class="font-heading font-medium text-sm text-gray-400">500 - Medium</p>
+                            <p class="font-heading font-semibold text-sm text-gray-400">600 - Semibold</p>
+                            <p class="font-heading font-bold text-sm text-gray-400">700 - Bold</p>
+                            <p class="font-heading font-extrabold text-sm text-gray-400">800 - Extra Bold</p>
+                        </div>
+                        <div>
+                            <p class="font-body text-base mb-1"><strong>Sora (Body)</strong></p>
+                            <p class="font-body font-light text-sm text-gray-400">300 - Light</p>
+                            <p class="font-body font-normal text-sm text-gray-400">400 - Regular</p>
+                            <p class="font-body font-medium text-sm text-gray-400">500 - Medium</p>
+                            <p class="font-body font-semibold text-sm text-gray-400">600 - Semibold</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold mb-6 font-heading">Buttons</h2>
+            
+            <!-- Primary Button -->
+            <div class="mb-8">
+                <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Primary Button</h3>
+                <div class="space-y-4">
+                    <button class="bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg font-body hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Primary Button</button>
+                    <div class="text-sm font-body text-gray-400">
+                        <p><strong>Style:</strong> Red background (#dc2626), white text, Sora font</p>
+                        <p><strong>Size:</strong> Large padding (32px x 16px), 18px font size</p>
+                        <p><strong>Effects:</strong> Shadow, subtle lift on hover</p>
+                        <p><strong>CSS Class:</strong> <code class="text-accent bg-gray-800 px-2 py-1 rounded">bg-primary text-white px-8 py-4 rounded-lg</code></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Button -->
+            <div class="mb-8">
+                <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Secondary Button</h3>
+                <div class="space-y-4">
+                    <button class="bg-transparent border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold text-lg font-body hover:bg-primary hover:text-white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Secondary Button</button>
+                    <div class="text-sm font-body text-gray-400">
+                        <p><strong>Style:</strong> Transparent background, red border, red text</p>
+                        <p><strong>Size:</strong> Same padding as primary button</p>
+                        <p><strong>Effects:</strong> Hover fills with red background</p>
+                        <p><strong>CSS Class:</strong> <code class="text-accent bg-gray-800 px-2 py-1 rounded">border-2 border-primary text-primary hover:bg-primary</code></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ghost Button -->
+            <div class="mb-8">
+                <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Ghost Button</h3>
+                <div class="space-y-4">
+                    <button class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg font-body hover:text-accent hover:border-accent transition-all duration-200">Ghost Button</button>
+                    <div class="text-sm font-body text-gray-400">
+                        <p><strong>Style:</strong> Transparent background, white border, white text</p>
+                        <p><strong>Size:</strong> Same padding as primary button</p>
+                        <p><strong>Effects:</strong> Hover changes text and border to accent color</p>
+                        <p><strong>CSS Class:</strong> <code class="text-accent bg-gray-800 px-2 py-1 rounded">border-2 border-white text-white hover:text-accent</code></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button Sizes -->
+            <div class="mb-8">
+                <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Button Sizes</h3>
+                <div class="space-y-4">
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <button class="bg-primary text-white px-4 py-2 rounded-lg font-semibold text-sm font-body hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Small</button>
+                        <button class="bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg font-body hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Default</button>
+                        <button class="bg-primary text-white px-10 py-5 rounded-lg font-semibold text-xl font-body hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Large</button>
+                    </div>
+                    <div class="text-sm font-body text-gray-400">
+                        <p><strong>Small:</strong> <code class="text-accent bg-gray-800 px-2 py-1 rounded">px-4 py-2 text-sm</code></p>
+                        <p><strong>Default:</strong> <code class="text-accent bg-gray-800 px-2 py-1 rounded">px-8 py-4 text-lg</code></p>
+                        <p><strong>Large:</strong> <code class="text-accent bg-gray-800 px-2 py-1 rounded">px-10 py-5 text-xl</code></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components from Landing Page -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold mb-6 font-heading">Landing Page Components</h2>
+            
+            <!-- Navigation Menu -->
+            <div class="mb-8">
+                <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Navigation Menu</h3>
+                <header class="bg-black/95 backdrop-blur-md border-b border-brand-600/20">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex items-center justify-between h-16 lg:h-20">
+                            <!-- Logo -->
+                            <a href="#" class="text-xl lg:text-2xl font-bold text-white hover:text-brand-600 transition-colors duration-300 font-heading">
+                                The Strikers<span class="text-brand-600">Lab</span>
+                            </a>
+                            
+                            <!-- Desktop Navigation -->
+                            <nav class="hidden md:flex items-center space-x-8">
+                                <a href="#challenge" class="text-white hover:text-red-500 transition-colors duration-300 font-medium font-body">The Challenge</a>
+                                <a href="#results" class="text-white hover:text-red-500 transition-colors duration-300 font-medium font-body">Results</a>
+                                <a href="#coach" class="text-white hover:text-red-500 transition-colors duration-300 font-medium font-body">Meet Franz</a>
+                                <a href="#faq" class="text-white hover:text-red-500 transition-colors duration-300 font-medium font-body">FAQ</a>
+                            </nav>
+                            
+                            <!-- Mobile Menu Button -->
+                            <button class="md:hidden text-white hover:text-red-500 transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Mobile Navigation Menu -->
+                        <div class="md:hidden bg-black/95 backdrop-blur-md border-b border-brand-600/20">
+                            <div class="container mx-auto px-4 py-4">
+                                <nav class="flex flex-col space-y-4">
+                                    <a href="#challenge" class="text-white hover:text-red-500 transition-colors duration-300 font-medium py-2 font-body">The Challenge</a>
+                                    <a href="#results" class="text-white hover:text-red-500 transition-colors duration-300 font-medium py-2 font-body">Results</a>
+                                    <a href="#coach" class="text-white hover:text-red-500 transition-colors duration-300 font-medium py-2 font-body">Meet Franz</a>
+                                    <a href="#faq" class="text-white hover:text-red-500 transition-colors duration-300 font-medium py-2 font-body">FAQ</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="text-sm font-body text-gray-400 mt-2">
+                    <p><strong>Features:</strong> Logo on left, navigation menu on right, mobile-responsive with hamburger menu</p>
+                    <p><strong>Links:</strong> Navigate to different sections of the landing page (#challenge, #results, #coach, #faq)</p>
+                </div>
+            </div>
+
+            <!-- Hero CTA Button -->
+            <div class="mb-8">
+                <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Hero CTA Button</h3>
+                <button class="bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg font-body hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                    Apply Now – Join the 6-Week Spring Shred Challenge
+                </button>
+                <div class="text-sm font-body text-gray-400 mt-2">
+                    <p><strong>Note:</strong> All CTA buttons should use the primary button styling and this exact copy for consistency</p>
+                    <p><strong>Standard CTA Copy:</strong> "Apply Now – Join the 6-Week Spring Shred Challenge"</p>
+                </div>
+            </div>
+
+            <!-- Badge/Pill -->
+            <div class="mb-8">
+                <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Badge/Pill</h3>
+                <div class="space-y-2">
+                    <div class="text-brand-600 font-bold text-xs bg-brand-600 text-white px-3 py-1 rounded-full inline-block font-body">TSL TRANSFORMATION</div>
+                    <div class="bg-brand-600 text-white px-6 py-4 rounded-xl font-bold text-xl inline-block font-heading">Challenge Banner</div>
+                </div>
+            </div>
+
+            <!-- Cards -->
+            <div class="mb-8">
+                <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Cards</h3>
+                <div class="space-y-4">
+                    <!-- Basic Card -->
+                    <div class="border border-gray-700 rounded-lg p-6" style="background-color: #171A1C;">
+                        <h4 class="text-lg font-semibold mb-3 font-heading">Basic Card</h4>
+                        <p class="text-gray-400 font-body">Simple card with border and padding</p>
+                    </div>
+                    
+                    <!-- Feature Card -->
+                    <div class="border border-gray-700 rounded-lg p-6 shadow-lg" style="background-color: #171A1C;">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-brand-600 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-white mb-2 font-heading">Feature Card</h4>
+                                <p class="text-gray-300 text-sm leading-relaxed font-body">Card with icon and feature description</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transformation Card -->
+                    <div class="border border-gray-700 rounded-lg p-6 group hover:scale-105 transition-transform duration-300" style="background-color: #171A1C;">
+                        <div class="relative aspect-square bg-gradient-to-br from-brand-600/20 to-brand-800/20 rounded-t-xl">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-brand-600 font-bold text-xs bg-brand-600 text-white px-3 py-1 rounded-full mb-4 font-body">
+                                        TSL TRANSFORMATION
+                                    </div>
+                                    <p class="text-gray-400 text-sm font-body">Before/After Image</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h4 class="font-semibold text-white font-heading">Transformation Card</h4>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card -->
+                    <div class="border border-gray-700 rounded-lg p-6 border-l-4 border-brand-600 shadow-lg" style="background-color: #171A1C;">
+                        <div class="text-center py-8 px-6">
+                            <div class="text-6xl text-brand-600 mb-4 font-heading">"</div>
+                            <p class="text-xl italic text-gray-200 mb-4 leading-relaxed font-body">
+                                One of the most welcoming communities I've ever encountered. No egos, just passion.
+                            </p>
+                            <p class="font-bold text-brand-600 font-body">– Ewan R.</p>
+                        </div>
+                    </div>
+
+                    <!-- Google Rating Card -->
+                    <div class="border border-gray-700 rounded-lg p-6 shadow-lg max-w-md" style="background-color: #171A1C;">
+                        <div class="flex items-center justify-center space-x-4 py-8">
+                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                                <span class="text-white font-bold text-xl font-heading">G</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-white font-heading">Google Rating</h4>
+                                <p class="text-yellow-400 font-body">★★★★★ 4.9/5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Accordion -->
+            <div class="mb-8">
+                <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">FAQ Accordion</h3>
+                
+                <!-- FAQ Items -->
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
+                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
+                            <span class="text-lg font-semibold font-heading">Do I need experience?</span>
+                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
+                            <p class="leading-relaxed font-body">Not at all. Most people who join are complete beginners. We start with fundamentals and progress at your pace.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
+                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
+                            <span class="text-lg font-semibold font-heading">What if I'm unfit, older, or overweight?</span>
+                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
+                            <p class="leading-relaxed font-body">That's exactly who this challenge is designed for. Classes are beginner-friendly and tailored to your fitness level.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
+                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
+                            <span class="text-lg font-semibold font-heading">Will I get hurt?</span>
+                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
+                            <p class="leading-relaxed font-body">Safety is our priority. Training is coach-led, with modifications for every level. You'll never be pushed into sparring or anything beyond your comfort zone.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
+                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
+                            <span class="text-lg font-semibold font-heading">What if I don't have much time?</span>
+                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
+                            <p class="leading-relaxed font-body">Our flexible timetable (morning, evening, and weekend classes) means even 2–3 sessions per week delivers results.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
+                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
+                            <span class="text-lg font-semibold font-heading">How much weight will I lose?</span>
+                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
+                            <p class="leading-relaxed font-body">Results vary, but most adults drop 3–6kg in 6 weeks. You'll also gain confidence, energy, and strength — which are just as valuable as the number on the scale.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="accordion-item rounded-lg" style="background-color: #171A1C;">
+                        <button class="accordion-trigger w-full text-left px-6 py-6 text-white hover:bg-gray-700 transition-colors duration-200">
+                            <span class="text-lg font-semibold font-heading">What if I don't hit my goals?</span>
+                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content px-6 pb-6 text-gray-300" style="display: none;">
+                            <p class="leading-relaxed font-body">That's where the Fighter's Guarantee comes in. Show up and complete the challenge, and your deposit is refunded. Either way, you walk away fitter, stronger, and more confident.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-sm font-body text-gray-400 mt-4">
+                    <p><strong>Features:</strong> Expandable FAQ accordion with smooth animations, proper spacing, and consistent typography</p>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</body>
+</html>
