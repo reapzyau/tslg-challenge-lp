@@ -17,7 +17,7 @@
             theme: {
                 extend: {
                     colors: {
-                        'bg': '#000000',
+                        'bg': '#0C0D0E',
                         'primary': '#dc2626',
                         'accent': '#F97316',
                         'card': '#171A1C',
@@ -104,7 +104,7 @@
         }
     </style>
 </head>
-<body style="background-color: #000000;" class="text-white min-h-screen">
+<body style="background-color: #0C0D0E;" class="text-white min-h-screen">
     <!-- Header -->
     <header class="border-b border-gray-700 py-6">
         <div class="max-w-4xl mx-auto px-6">
@@ -120,9 +120,9 @@
             
             <div class="grid grid-cols-4 gap-4">
                 <div class="text-center">
-                    <div class="w-20 h-20 rounded-lg mx-auto mb-2 border-2 border-gray-600" style="background-color: #000000;"></div>
+                    <div class="w-20 h-20 rounded-lg mx-auto mb-2 border-2 border-gray-600" style="background-color: #0C0D0E;"></div>
                     <p class="text-sm">Background</p>
-                    <code class="text-xs text-gray-400">#000000</code>
+                    <code class="text-xs text-gray-400">#0C0D0E</code>
                 </div>
                 <div class="text-center">
                     <div class="w-20 h-20 rounded-lg mx-auto mb-2" style="background-color: #dc2626;"></div>
@@ -265,7 +265,7 @@
             <!-- Navigation Menu -->
             <div class="mb-8">
                 <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Navigation Menu</h3>
-                <header class="bg-black/95 backdrop-blur-md border-b border-brand-600/20">
+                <header class="backdrop-blur-md border-b border-brand-600/20" style="background-color: rgba(12,13,14,0.95);">
                     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="flex items-center justify-between h-16 lg:h-20">
                             <!-- Logo -->
@@ -290,7 +290,7 @@
                         </div>
                         
                         <!-- Mobile Navigation Menu -->
-                        <div class="md:hidden bg-black/95 backdrop-blur-md border-b border-brand-600/20">
+                        <div class="md:hidden backdrop-blur-md border-b border-brand-600/20" style="background-color: rgba(12,13,14,0.95);">
                             <div class="container mx-auto px-4 py-4">
                                 <nav class="flex flex-col space-y-4">
                                     <a href="#challenge" class="text-white hover:text-red-500 transition-colors duration-300 font-medium py-2 font-body">The Challenge</a>
@@ -337,63 +337,118 @@
                 <h3 class="text-lg font-medium mb-4 font-heading text-gray-300">Cards</h3>
                 <div class="space-y-4">
                     <!-- Basic Card -->
-                    <div class="border border-gray-700 rounded-lg p-6" style="background-color: #171A1C;">
-                        <h4 class="text-lg font-semibold mb-3 font-heading">Basic Card</h4>
-                        <p class="text-gray-400 font-body">Simple card with border and padding</p>
-                    </div>
-                    
-                    <!-- Feature Card -->
-                    <div class="border border-gray-700 rounded-lg p-6 shadow-lg" style="background-color: #171A1C;">
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-brand-600 rounded-full flex items-center justify-center">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="card border-2 border-accent/40 hover:border-accent/80 transition-all duration-300 group shadow-lg hover:shadow-2xl rounded-xl">
+                        <div class="card-content p-6">
+                            <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/30 transition-colors duration-300">
+                                <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                 </svg>
                             </div>
-                            <div class="flex-1">
-                                <h4 class="font-semibold text-white mb-2 font-heading">Feature Card</h4>
-                                <p class="text-gray-300 text-sm leading-relaxed font-body">Card with icon and feature description</p>
+                            <h4 class="font-bold text-white mb-3 font-heading" style="font-size: 1.44rem;">Basic Card</h4>
+                            <p class="text-gray-300 mb-4 font-body" style="font-size: 0.9rem;">Simple card with border and padding</p>
+                            <div class="bg-accent/20 rounded-lg p-3 border border-accent/30">
+                                <p class="text-accent font-bold text-lg font-heading">Standard Value</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature Card -->
+                    <div class="card border-2 border-accent/30 hover:border-accent/60 transition-all duration-300 shadow-md hover:shadow-lg rounded-xl">
+                        <div class="card-content p-6">
+                            <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mb-3">
+                                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2 font-heading" style="font-size: 1.2rem;">Feature Card</h4>
+                            <p class="text-gray-300 mb-3 font-body" style="font-size: 0.85rem;">Card with icon and feature description</p>
+                            <div class="bg-accent/20 rounded-lg p-2 border border-accent/30">
+                                <p class="text-accent font-bold font-heading">$99 Value</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Transformation Card -->
-                    <div class="border border-gray-700 rounded-lg p-6 group hover:scale-105 transition-transform duration-300" style="background-color: #171A1C;">
-                        <div class="relative aspect-square bg-gradient-to-br from-brand-600/20 to-brand-800/20 rounded-t-xl">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="text-center">
-                                    <div class="text-brand-600 font-bold text-xs bg-brand-600 text-white px-3 py-1 rounded-full mb-4 font-body">
-                                        TSL TRANSFORMATION
+                    <!-- Everything You Get Cards -->
+                    <div class="mt-8">
+                        <h4 class="text-lg font-semibold mb-4 font-heading text-gray-300">Everything You Get Cards</h4>
+                        
+                        <!-- Core Program Card -->
+                        <div class="mb-6">
+                            <h5 class="text-base font-medium mb-3 font-heading text-gray-400">Core Program Card</h5>
+                            <div class="card border-2 border-accent/40 hover:border-accent/80 transition-all duration-300 group shadow-lg hover:shadow-2xl rounded-xl">
+                                <div class="card-content p-6">
+                                    <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/30 transition-colors duration-300">
+                                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                        </svg>
                                     </div>
-                                    <p class="text-gray-400 text-sm font-body">Before/After Image</p>
+                                    <h4 class="font-bold text-white mb-3 font-heading" style="font-size: 1.44rem;">Unlimited Training</h4>
+                                    <p class="text-gray-300 mb-4 font-body" style="font-size: 0.9rem;">6 weeks of Muay Thai, Boxing & Wrestling classes</p>
+                                    <div class="bg-accent/20 rounded-lg p-3 border border-accent/30">
+                                        <p class="text-accent font-bold text-lg font-heading">$330 Value</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="p-4 text-center">
-                            <h4 class="font-semibold text-white font-heading">Transformation Card</h4>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial Card -->
-                    <div class="border border-gray-700 rounded-lg p-6 border-l-4 border-brand-600 shadow-lg" style="background-color: #171A1C;">
-                        <div class="text-center py-8 px-6">
-                            <div class="text-6xl text-brand-600 mb-4 font-heading">"</div>
-                            <p class="text-xl italic text-gray-200 mb-4 leading-relaxed font-body">
-                                One of the most welcoming communities I've ever encountered. No egos, just passion.
-                            </p>
-                            <p class="font-bold text-brand-600 font-body">– Ewan R.</p>
-                        </div>
-                    </div>
-
-                    <!-- Google Rating Card -->
-                    <div class="border border-gray-700 rounded-lg p-6 shadow-lg max-w-md" style="background-color: #171A1C;">
-                        <div class="flex items-center justify-center space-x-4 py-8">
-                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                                <span class="text-white font-bold text-xl font-heading">G</span>
+                            <div class="text-sm font-body text-gray-400 mt-2">
+                                <p><strong>Style:</strong> Accent border, large icon (w-16 h-16), prominent title, value badge</p>
+                                <p><strong>CSS Classes:</strong> <code class="text-accent bg-gray-800 px-2 py-1 rounded">card border-2 border-accent/40 hover:border-accent/80 transition-all duration-300 group shadow-lg hover:shadow-2xl rounded-xl</code></p>
                             </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-white font-heading">Google Rating</h4>
-                                <p class="text-yellow-400 font-body">★★★★★ 4.9/5</p>
+                        </div>
+
+                        <!-- Partner Perks Card -->
+                        <div class="mb-6">
+                            <h5 class="text-base font-medium mb-3 font-heading text-gray-400">Partner Perks Card</h5>
+                            <div class="card border-2 border-accent/30 hover:border-accent/60 transition-all duration-300 shadow-md hover:shadow-lg rounded-xl">
+                                <div class="card-content p-6">
+                                    <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mb-3">
+                                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                        </svg>
+                                    </div>
+                                    <h4 class="font-semibold text-white mb-2 font-heading" style="font-size: 1.2rem;">Nutrition Coaching</h4>
+                                    <p class="text-gray-300 mb-3 font-body" style="font-size: 0.85rem;">Exclusive discounts with trusted partners</p>
+                                    <div class="bg-accent/20 rounded-lg p-2 border border-accent/30">
+                                        <p class="text-accent font-bold font-heading">$75 Value</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-sm font-body text-gray-400 mt-2">
+                                <p><strong>Style:</strong> Lighter accent border, smaller icon (w-12 h-12), compact layout</p>
+                                <p><strong>CSS Classes:</strong> <code class="text-accent bg-gray-800 px-2 py-1 rounded">card border-2 border-accent/30 hover:border-accent/60 transition-all duration-300 shadow-md hover:shadow-lg rounded-xl</code></p>
+                            </div>
+                        </div>
+
+                        <!-- Fast-Action Bonuses Card -->
+                        <div class="mb-6">
+                            <h5 class="text-base font-medium mb-3 font-heading text-gray-400">Fast-Action Bonuses Card</h5>
+                            <div class="card border-2 border-red-500/40 hover:border-red-500/80 transition-all duration-300 group shadow-lg hover:shadow-2xl rounded-xl">
+                                <div class="card-content p-6">
+                                    <div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-red-500/30 transition-colors duration-300">
+                                        <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                        </svg>
+                                    </div>
+                                    <h4 class="font-bold text-white mb-3 font-heading" style="font-size: 1.44rem;">FREE Private Lesson</h4>
+                                    <p class="text-gray-300 mb-4 font-body" style="font-size: 0.9rem;">1:1 coaching with Franz "Dirty" Sanchez</p>
+                                    <div class="bg-red-500/20 rounded-lg p-3 border border-red-500/30">
+                                        <p class="text-red-400 font-bold text-lg font-heading">$150 Value</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-sm font-body text-gray-400 mt-2">
+                                <p><strong>Style:</strong> Red border and accents, same layout as Core Program cards</p>
+                                <p><strong>CSS Classes:</strong> <code class="text-accent bg-gray-800 px-2 py-1 rounded">card border-2 border-red-500/40 hover:border-red-500/80 transition-all duration-300 group shadow-lg hover:shadow-2xl rounded-xl</code></p>
+                            </div>
+                        </div>
+
+                        <!-- Card Usage Guidelines -->
+                        <div class="bg-gray-800/50 rounded-lg p-4 border border-gray-600">
+                            <h5 class="text-base font-semibold mb-3 font-heading text-white">Card Usage Guidelines</h5>
+                            <div class="text-sm font-body text-gray-300 space-y-2">
+                                <p><strong>Core Program Cards:</strong> Use for main features/benefits with high value. Large icons (w-16 h-16), bold titles (1.44rem), prominent value badges.</p>
+                                <p><strong>Partner Perks Cards:</strong> Use for secondary features/benefits. Smaller icons (w-12 h-12), medium titles (1.2rem), compact value badges.</p>
+                                <p><strong>Fast-Action Bonuses Cards:</strong> Use for limited-time offers or special bonuses. Red color scheme to create urgency, same layout as Core Program cards.</p>
+                                <p><strong>Common Elements:</strong> All cards use rounded-xl corners, hover effects, transition animations, and consistent spacing (p-6).</p>
                             </div>
                         </div>
                     </div>

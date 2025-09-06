@@ -36,6 +36,11 @@ This is a high-converting, standalone landing page for The Strikers Lab's 6-Week
 
 ## Next Steps
 
+### Environment Key
+- Use `OPENAPI_KEY` for any API integrations.
+- Copy `.env.example` to `.env` and set `OPENAPI_KEY=...`.
+- Ensure your code reads `process.env.OPENAPI_KEY` (Node) or `os.getenv("OPENAPI_KEY")` (Python).
+
 ### 1. Replace Placeholders
 - **Images**: Replace placeholder divs with actual photos:
   - Google Reviews screenshot
